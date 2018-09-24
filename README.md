@@ -5,11 +5,14 @@ Let’s get a better understanding of the background of Monte Carlo simulations 
 
 In the script I wrote, the intention was to design a class that could use different Monte Carlo methods, and different graphical outputs of the simulation with descriptive statistics as well. Note we can use a single ticker or portfolio of assets in the simulation. We also have multiple models we can use.
 
-Model 1 – Simulation using daily volatility:
+***Model 1 – Simulation using daily volatility:***
 
 Pretty straightforward. The random “shock” element here will be determined by the historical volatility of a stock over a given timeframe.
 
-Model 2 – Simulation using Brownian Motion: 
+***Model 2 – Simulation using Brownian Motion:***
 
 Here, we are assuming the stock(s) will “drift” a certain amount over time. We can calculate this with the average daily return in our series as well as the variance of the returns. This post will not cover the background of the simulation techniques extensively. We are trying to focus on implementing the models in a program.
+
+# Examples
+![](MC Sim.png)
 
