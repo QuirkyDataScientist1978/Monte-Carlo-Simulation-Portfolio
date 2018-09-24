@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import json
 from scipy.stats import norm
+import os
 #See Styles
 #print(plt.style.available)
         
@@ -20,8 +21,13 @@ class monte_carlo:
         self.predicted_days = predicted_days
         self.upper_bound = upper_bound
         self.lower_bound = lower_bound
+        self.path = os.path.join(os.path.expanduser("~"),'Saved Portfolios')
 
-    def get_portfolio(self):
+    def get_portfolio(self):            
+        # Create Directory
+        if not os.path.exists(self.path):
+            os.mkdir(path)
+            
         # Get Symbols and Request Necessary Data
         base_string = ""
 
@@ -68,13 +74,13 @@ class monte_carlo:
         appended_data = appended_data.dropna(how='any')
         appended_data = appended_data.reindex_axis(sorted(appended_data.columns), axis=1)
 
-        appended_data.to_csv('C:/Users/Frank  Dupuis/fundTracker/Daily Data/' + self.portfolioName + ' Price Data.csv')
+        appended_data.to_csv(self.path + self.portfolioName + ' Price Data.csv')
 
         self.prices = pd.Series(appended_data['Portfolio Value'])
         self.returns = pd.Series(appended_data['Portfolio %'])
         
     def load_portfolio(self):
-        df = pd.read_csv('C:/Users/Frank  Dupuis/fundTracker/Daily Data/' + self.portfolioName + ' Price Data.csv', index_col=0)
+        df = pd.read_csv(self.path + self.portfolioName + ' Price Data.csv', index_col=0)
         self.prices = pd.Series(df['Portfolio Value'])
         self.returns = pd.Series(df['Portfolio %'])
         
@@ -273,20 +279,19 @@ class monte_carlo:
 
 if __name__== "__main__":
     portfolioName = 'MC Port'
-    symbols = ['AAPL', 'KO', 'HD', 'PM']
-    weights = [1000,1000,2000,3000]
+    symbols = ['AAPL', 'KO', 'HD', 'PM', 'RTN']
+    weights = [1000,1000,2000,3000, 1000]
     num_simulations = 10
     predicted_days = 2000
     upper_bound = 1500000
     lower_bound = 998037
     sim = monte_carlo(portfolioName, symbols, weights, num_simulations, predicted_days, upper_bound, lower_bound)
-
-    #sim.get_portfolio()
-    sim.load_portfolio()
+    sim.get_portfolio()
+    #sim.load_portfolio()
     sim.monte_carlo_sim()
     #sim.VaR()
     #sim.histogram()
     #sim.brownian_motion()
-    #sim.line_graph()
+    sim.line_graph()
     sim.key_stats()
-    
+ 
