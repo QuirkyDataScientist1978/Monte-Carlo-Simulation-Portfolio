@@ -14,5 +14,8 @@ Pretty straightforward. The random “shock” element here will be determined b
 Here, we are assuming the stock(s) will “drift” a certain amount over time. We can calculate this with the average daily return in our series as well as the variance of the returns. This post will not cover the background of the simulation techniques extensively. We are trying to focus on implementing the models in a program.
 
 # Examples
-![]([MC Sim.png])
+
+![](Hist.png)
+
+![](VaR.png)
 
