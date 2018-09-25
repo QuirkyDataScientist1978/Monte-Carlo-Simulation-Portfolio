@@ -26,7 +26,7 @@ class monte_carlo:
     def get_portfolio(self):            
         # Create Directory
         if not os.path.exists(self.path):
-            os.mkdir(path)
+            os.mkdir(self.path)
             
         # Get Symbols and Request Necessary Data
         base_string = ""
